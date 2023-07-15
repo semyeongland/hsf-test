@@ -10,30 +10,30 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 const schinfo = localStorage.getItem('schinfo');
 const stdnt = localStorage.getItem('stdnt');
 const lastUpdated = localStorage.getItem('lastUpdated');
 const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
 
 if (!schinfo || !stdnt || !lastUpdated || new Date().getTime() - parseInt(lastUpdated) >= oneWeekInMilliseconds) {  //스토리지에 데이터가 없거나 마지막으로 저장한지 일주일이 지났다면
-  axios.get('/.netlify/functions/api')
-    .then(function (response) {
-      const data = response.data;
-      const schinfo = data[0].list;
-      const stdnt = data[1].list;
-      const currentTime = new Date().getTime();
+  // axios.get('/.netlify/functions/api')
+  //   .then(function (response) {
+  //     const data = response.data;
+  //     const schinfo = data[0].list;
+  //     const stdnt = data[1].list;
+  //     const currentTime = new Date().getTime();
 
-      localStorage.setItem('schinfo', JSON.stringify(schinfo));
-      localStorage.setItem('stdnt', JSON.stringify(stdnt));
-      localStorage.setItem('lastUpdated', currentTime.toString());
-      window.location.reload();
-    })
-    .catch(function (error) {
-      console.log('오류가 발생했습니다. 새로고침해주세요.\n' + error)
-      // alert('오류가 발생했습니다. 새로고침해주세요.\n' + error)
-      // window.location.reload();
-    });
+  //     localStorage.setItem('schinfo', JSON.stringify(schinfo));
+  //     localStorage.setItem('stdnt', JSON.stringify(stdnt));
+  //     localStorage.setItem('lastUpdated', currentTime.toString());
+  //     window.location.reload();
+  //   })
+  //   .catch(function (error) {
+  //     console.log('오류가 발생했습니다. 새로고침해주세요.\n' + error)
+  //     // alert('오류가 발생했습니다. 새로고침해주세요.\n' + error)
+  //     // window.location.reload();
+  //   });
 }
 
 
